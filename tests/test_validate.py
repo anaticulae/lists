@@ -181,7 +181,6 @@ class Evaluate(utilatest.BaseLiner):
                     data = utila.normalize_whitespaces(data)
                     result.append(f'{number} {data}')
                 if len(page.content) > 1:
-                    result.append(
-                        '---------------------------------------------')
+                    result.append('-' * 45)
         raw = utila.NEWLINE.join(result).strip()
         return raw
