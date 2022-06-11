@@ -18,8 +18,8 @@
 
 import serializeraw
 import utila
+
 import lists.runtime
-import words.lookup
 
 
 @utila.checkdatatype
@@ -29,7 +29,6 @@ def work(
     border: str,
     headliner: str,
     headerfooters: str,
-    magic: str = None,
     pages: tuple = None,
 ) -> str:
     """Combine `extracted_text` and check the `undefined` fields for lists.
@@ -43,7 +42,6 @@ def work(
         border,
         headliner,
         headerfooters,
-        magic,
         pages=pages,
     )
     # run extractor
@@ -59,7 +57,6 @@ def create_data(
     border: str,
     headlines: str,
     headerfooters: str,
-    magic: str = None,
     pages: tuple = None,
 ):
     ptcns = serializeraw.ptcn_fromfile(
@@ -69,31 +66,8 @@ def create_data(
         headerfooter=headerfooters,
         pages=pages,
     )
-    headlines = serializeraw.load_headlines(headlines, pages=pages)
-    magic = words.lookup.magics_frompath(
-        path=magic,
+    headlines = serializeraw.load_headlines(
+        headlines,
         pages=pages,
     )
-    ptcns = skip_magic(ptcns, magic)
     return ptcns, headlines
-
-
-LIST_VALID = {
-    iamraw.PageContentType.LIST,
-    iamraw.PageContentType.TEXT,
-}
-
-
-def skip_magic(ptcns, magics):
-    if isinstance(magics, words.lookup.LookupEmpty):
-        return ptcns
-    for page in ptcns:
-        data = [
-            item for index, item in enumerate(page) if magics(
-                page=page.page,
-                line=index,
-                default=iamraw.PageContentType.TEXT,
-            ) in LIST_VALID
-        ]
-        page.data = data
-    return ptcns
