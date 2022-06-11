@@ -8,7 +8,6 @@
 # =============================================================================
 
 import functools
-import os
 
 import power
 import pytest
@@ -18,12 +17,6 @@ import utilatest
 
 import lists
 import tests
-
-
-def load_expected(name) -> str:
-    source = os.path.join(lists.ROOT, f'tests/expected/{name}')
-    content = utila.file_read(source).strip()
-    return content
 
 
 def extract_lists(source, pages: tuple, testdir, monkeypatch):
