@@ -44,5 +44,7 @@ if __name__ == "__main__":
         ],
         packages=[
             'lists',
+            'lists.features',
+            'lists.strategies',
         ],
     )
