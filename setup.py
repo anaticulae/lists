@@ -47,4 +47,7 @@ if __name__ == "__main__":
             'lists.features',
             'lists.strategies',
         ],
+        entry_points={
+            'console_scripts': ['lists = lists.cli:main',],
+        },
     )
