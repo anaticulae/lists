@@ -34,9 +34,22 @@ def main():
         workplan=WORKPLAN,
         featurepackage='lists.features',
         config=utila.FeaturePackConfig(
+            rename=rename,
             description=DESCRIPTION,
             name=lists.PROCESS,
             pages=True,
             version=lists.__version__,
         ),
     )
+
+
+def rename(path):
+    if not isinstance(path, str):
+        path = [rename(item) for item in path]
+        return path
+    path = utila.rreplace(
+        path,
+        pattern='lists__result_result',
+        replace='words__list_list',
+    )
+    return path
