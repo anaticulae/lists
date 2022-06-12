@@ -9,6 +9,7 @@
 
 import power
 import serializeraw
+import texmex
 import utila
 import utilatest
 
@@ -25,7 +26,7 @@ def test_merge_pages():
         path=source,
         pages=pages,
     )
-    merged = lists.strategies.multiplepages.merge(ptcns)
+    merged = texmex.single(ptcns)
     assert merged
     assert merged[-1].bounding[3] >= 3000
 

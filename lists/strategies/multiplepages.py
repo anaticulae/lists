@@ -45,7 +45,7 @@ import lists.strategies.bestpage
 def run(ptcns, headlines) -> iamraw.PageContentLists:
     textfeed = texmex.document_textfeed(ptcns, count=1)
     textdistance = texmex.document_textdist_from_ptcns(ptcns)
-    merged = merge(ptcns)
+    merged = texmex.single(ptcns)
     extracted = lists.strategies.bestpage.extract_best_page(
         merged,
         headlines,
@@ -95,33 +95,3 @@ def lookup_table(ptcns) -> dict:
             collected[area] = PageLocal(navigator.page, index)
     result = dict(collected)
     return result
-
-
-def merge(navigators: texmex.PageTextNavigators) -> texmex.PageTextNavigator:
-    """Merge more than one pagenavigators to a single huge navigator to
-    detect multi page lists."""
-    # TODO: MOVE TO TEXMEX
-    if not navigators:
-        return None
-    if navigators[0]:
-        header = navigators[0][0].bounding[1]  # y0
-    else:
-        # starts on empty page without any content and no header
-        header = 0
-    y0 = header
-    result = []
-    for page in navigators:
-        offset = y0 - header
-        for item in page:
-            # avoid side effects to other content
-            item = item.copy()
-            item.bounding.y0 = utila.roundme(item.bounding.y0 + offset)
-            item.bounding.y1 = utila.roundme(item.bounding.y1 + offset)
-            result.append(item)
-        footer = page.content.bottom
-        y0 += footer - header
-
-    navigator = texmex.PageTextNavigator()
-    navigator.data = result
-    navigator.page = navigators[0].page
-    return navigator
