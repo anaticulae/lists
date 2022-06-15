@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.1
+
+### Fix
+
+* adjust interface (55d01862f097)
+
 ## v0.1.0
 
 ### Feature
