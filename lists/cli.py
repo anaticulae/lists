@@ -37,6 +37,7 @@ def main():
             rename=rename,
             description=DESCRIPTION,
             name=lists.PROCESS,
+            multiprocessed=True,
             pages=True,
             version=lists.__version__,
         ),
