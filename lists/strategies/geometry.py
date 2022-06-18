@@ -70,6 +70,9 @@ def analyze_page(ptcn: texmex.PTCN, headlines: list, textfeed: float) -> list:
             parsed = geostrat.al_parse_pages([data])
         except geostrat.AlternateGeometryException:
             continue
+        if not parsed:
+            # TODO: UNITE WITH EXCEPTION AFTER INTRODUCING EXECEPTION IN al_parse_pages
+            continue
         indexes = [item[0] for item in group]
         # TODO: VERIFY[0]
         parsed = parsed[0]
