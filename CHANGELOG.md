@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.2
+
+### Fix
+
+* skip empty page (1d2adbfecdb6)
+
 ## v0.1.1
 
 ### Fix
