@@ -25,6 +25,13 @@ WORKPLAN = [
         ],
         output=('result',),
     ),
+    utila.create_step(
+        'legacy',
+        inputs=[
+            utila.ResultFile('lists', 'result_result'),
+        ],
+        output=('legacy',),
+    ),
 ]
 
 
@@ -50,7 +57,7 @@ def rename(path):
         return path
     path = utila.rreplace(
         path,
-        pattern='lists__result_result',
+        pattern='lists__legacy_legacy',
         replace='words__list_list',
     )
     return path
