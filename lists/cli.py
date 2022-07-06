@@ -11,7 +11,16 @@ import utila
 
 import lists
 
-DESCRIPTION = 'TODO'
+DESCRIPTION = """\
+Determine lists inside a document.
+
+Supported:
+    1.
+    *
+    -
+    +
+    •
+"""
 
 WORKPLAN = [
     utila.create_step(
