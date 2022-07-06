@@ -48,8 +48,6 @@ def extract(resources):
     utila.log(f'root: {power.REPOSITORY}')
     genex.extract(
         files=resources,
-        destination=power.generated(),
-        base=power.REPOSITORY,
         caption=True,
         cleanup=True,
         codero=True,
@@ -60,5 +58,4 @@ def extract(resources):
         sections=True,
         tablero=True,
         worker=WORKER,
-        pages=':',
     )
