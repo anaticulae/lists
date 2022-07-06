@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* add description (110c7fe682c0)
+* add legacy step to adjust later runner to lists (b9d473f20e02)
+
 ## v0.1.2
 
 ### Fix
