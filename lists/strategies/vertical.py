@@ -102,22 +102,22 @@ def create_lists(items) -> list:
 
 
 def empty_list_rate(
-    list_single: iamraw.PageList,
+    parsed: iamraw.PageList,
     item_length_min: int = 7,
 ) -> float:
     """\
     Args:
-        list_single(PageList): parsed list
+        parsed(PageList): parsed list
         item_length_min(int): length of item in a list to detect as valid item
     Returns:
         Rate of empty elements in a parsed list
     """
     empty = [
-        item for item in list_single
+        item for item in parsed
         if (not item[1] or len(item[1]) < item_length_min)
     ]
     empty = len(empty)
-    if empty == len(list_single):
+    if empty == len(parsed):
         # all empty
         return 1.0
     if not empty:
@@ -126,7 +126,7 @@ def empty_list_rate(
         return 0.0
     rate = utila.rate_rel(
         empty,
-        len(list_single),
+        len(parsed),
     )
     return rate
 
