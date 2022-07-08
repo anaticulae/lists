@@ -101,8 +101,21 @@ def create_lists(items) -> list:
     return result
 
 
-def empty_list_rate(list_single: iamraw.PageList) -> float:
-    empty = len([item for item in list_single if not item[1]])
+def empty_list_rate(
+    list_single: iamraw.PageList,
+    item_length_min: int = 7,
+) -> float:
+    """\
+    item_length_min(int): length of item in a list to detect as valid item
+    """
+    empty = [
+        item for item in list_single
+        if (not item[1] or len(item[1]) < item_length_min)
+    ]
+    empty = len(empty)
+    if empty == len(list_single):
+        # all empty
+        return 1.0
     if not empty:
         return 0.0
     if empty < EMPTY_ITEM_LENGTH_MIN:

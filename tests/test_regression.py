@@ -35,7 +35,7 @@ def test_docu027p4(testdir, monkeypatch):
     loaded = serializeraw.load_lists(testdir.tmpdir)
     assert len(loaded) == 1
     area = utila.select_content(loaded, page=4)[0].area
-    assert area == [5, 6, 7]
+    assert area == [6, 7, 8]
 
 
 @utilatest.requires(power.MASTER110_PDF)
