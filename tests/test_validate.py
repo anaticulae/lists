@@ -33,7 +33,7 @@ def extract_lists(source, pages: tuple, testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_list_bachelor76page4(testdir, monkeypatch):
+def test_bachelor76page4(testdir, monkeypatch):
     pages = (4,)
     extracted = extract_lists(power.BACHELOR076_PDF, pages, testdir,
                               monkeypatch)
@@ -42,7 +42,7 @@ def test_list_bachelor76page4(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_list_bachelor76page5_10(testdir, monkeypatch):
+def test_bachelor76page5_10(testdir, monkeypatch):
     pages = (5, 6, 7, 8, 9, 10)
     extracted = extract_lists(power.BACHELOR076_PDF, pages, testdir,
                               monkeypatch)
@@ -51,7 +51,7 @@ def test_list_bachelor76page5_10(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_list_master72page9_10(testdir, monkeypatch):
+def test_master72page9_10(testdir, monkeypatch):
     pages = (9, 10)
     source = power.MASTER072_PDF
     extracted = extract_lists(source, pages, testdir, monkeypatch=monkeypatch)
@@ -60,7 +60,7 @@ def test_list_master72page9_10(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_list_master72page39_40_41(testdir, monkeypatch):
+def test_master72page39_40_41(testdir, monkeypatch):
     pages = (39, 40, 41, 42)
     source = power.MASTER072_PDF
     # extract
@@ -74,7 +74,7 @@ def test_list_master72page39_40_41(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_list_master155page23(testdir, monkeypatch):
+def test_master155page23(testdir, monkeypatch):
     pages = (23,)
     source = power.MASTER155_PDF
     # extract
@@ -95,7 +95,7 @@ def test_list_master155page23(testdir, monkeypatch):
     pytest.param(':', id='all'),
 ])
 @utilatest.nightly
-def test_list_bachelor128page36_42(pages, testdir, monkeypatch):
+def test_bachelor128page36_42(pages, testdir, monkeypatch):
     """Use pages to ensure that extracting works when extraction uses
     more than one chunk."""
     source = power.BACHELOR128_PDF
@@ -131,7 +131,7 @@ param = pytest.param
     param(power.MASTER155_PDF, ':', 'master155', id='master155'),
 ])
 @utilatest.nightly
-def test_list_validate(source, pages, expected, testdir, monkeypatch):
+def test_validate(source, pages, expected, testdir, monkeypatch):
     utilatest.fixture_requires(source)
     Evaluate(
         source=source,

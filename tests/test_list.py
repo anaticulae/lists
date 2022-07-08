@@ -44,7 +44,7 @@ Text
 """
 
 
-def test_list_numbered_regex_last_item():
+def test_numbered_regex_last_item():
     parsed = lists.regex.parse_numbered_list(NUMBERED_LIST)
     assert len(parsed) == NUMBERED_LIST_SAMPLE_SIZE, parsed
     # Final example is very important!
@@ -56,7 +56,7 @@ def test_list_numbered_regex_last_item():
         "to check your typing under both Python 2 & Python 3).")
 
 
-def test_list_numbered_regex_single_item():
+def test_numbered_regex_single_item():
     raw = (
         "8. Consider using optional static type checking to make sure your "
         "type usage works in both Python 2 &\n3 (e.g. use mypy to check your "
@@ -110,7 +110,7 @@ DOTTED_LIST_EXPECTED = [
 ]
 
 
-def test_list_dotted_simple():
+def test_dotted_simple():
     parsed = lists.regex.parse_dotted_list(DOTTED_LIST)
     assert parsed == DOTTED_LIST_EXPECTED
 
@@ -137,7 +137,7 @@ DOTTED_EXAMPLE_EXPECTED = [
 ]
 
 
-def test_list_dotted_with_start_and_end():
+def test_dotted_with_start_and_end():
     parsed = lists.regex.parse_dotted_list(DOTTED_EXAMPLE)
     assert parsed == DOTTED_EXAMPLE_EXPECTED
 
@@ -147,14 +147,14 @@ DOTTED_EXAMPLE_CONTENT_ONLY = """ • Index Page
 • Changelog"""
 
 
-def test_list_dotted_with_content_only():
+def test_dotted_with_content_only():
     parsed = lists.regex.parse_dotted_list(DOTTED_EXAMPLE_CONTENT_ONLY)
     assert parsed == ['Index Page', 'Support', 'Changelog']
 
 
 @utilatest.longrun
 @utilatest.requires(power.MASTER072_PDF)
-def test_list_master72page39_one_list(testdir):
+def test_master72page39_one_list(testdir):
     pages = (39,)
     source = power.link(power.MASTER072_PDF)
     ptcn = serializeraw.ptcn_frompath(
@@ -265,7 +265,7 @@ def test_merge_overlapping_lists_two_pages():
 
 
 @utilatest.requires(power.MASTER110_PDF)
-def test_list_area_tuple_master110pages67(testdir, monkeypatch):
+def test_area_tuple_master110pages67(testdir, monkeypatch):
     """Ensure that area-attribute is splitted by list content.
 
     Example: 0l_0, 0l_0; 0l_1; 0l_2

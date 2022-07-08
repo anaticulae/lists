@@ -24,7 +24,7 @@ Psychologen.  Zusätzlich  verfügen  einige  Mitarbeiter  über  sozialpsychiat
 """
 
 
-def test_list_parse_regex():
+def test_parse_regex():
     parsed = lists.regex.parse_single(CONTENT)
     assert len(parsed) == 6
 
@@ -39,7 +39,7 @@ Experimentvorgaben.
 """
 
 
-def test_list_parse_regex_regression():
+def test_parse_regex_regression():
     parsed = lists.regex.parse_single(RAW)
     assert len(parsed) == 1
     end = parsed[0]
