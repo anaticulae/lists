@@ -124,7 +124,10 @@ def empty_list_rate(
         return 0.0
     if empty < EMPTY_ITEM_LENGTH_MIN:
         return 0.0
-    rate = empty / len(list_single)
+    rate = utila.rate_rel(
+        empty,
+        len(list_single),
+    )
     return rate
 
 
