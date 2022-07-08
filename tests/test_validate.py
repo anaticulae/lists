@@ -156,14 +156,10 @@ class Evaluate(utilatest.BaseLiner):
             source=power.link(source),
             workdir=workdir,
             archive=ARCHIVE,
-            loader=self.frompath,
+            loader=serializeraw.load_lists,
             convert_source=False,
             index=expected,
         )
-
-    def frompath(self, _):  # pylint:disable=W0613
-        loaded = serializeraw.load_lists(self.workdir)
-        return loaded
 
     def raw(self, value) -> str:
         result = []
