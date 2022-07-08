@@ -106,7 +106,11 @@ def empty_list_rate(
     item_length_min: int = 7,
 ) -> float:
     """\
-    item_length_min(int): length of item in a list to detect as valid item
+    Args:
+        list_single(PageList): parsed list
+        item_length_min(int): length of item in a list to detect as valid item
+    Returns:
+        Rate of empty elements in a parsed list
     """
     empty = [
         item for item in list_single
