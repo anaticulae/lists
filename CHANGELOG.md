@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.2.1
+
+### Fix
+
+* extend empty skipper (bfe203e97179)
+
+### Documentation
+
+* extend interface documentation (606d3b2ece99)
+
 ## v0.2.0
 
 ### Feature
