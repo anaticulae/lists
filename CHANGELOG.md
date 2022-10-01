@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.3.0 (2022-10-01)
+
+### Feature
+
+* use new footnote source (70868103e865)
+* store generated data if nightly fails (672745a1dba6)
+
+### Chore
+
+* add separate generator step (b9680bd4238f)
+* add opengl (9b93b53d5623)
+* add missing test data generator (dfb44b3bd4ac)
+* increase worker count (3c752fd2a954)
+* add Jenkinsfile (1c1bcad37cb6)
+* upgrade requirements.txt (93900ddc98b1)
+
 ## v0.2.1
 
 ### Fix
