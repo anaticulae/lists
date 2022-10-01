@@ -30,7 +30,7 @@ WORKPLAN = [
             utila.ResultFile('rawmaker', 'oneline_text_positions'),
             utila.ResultFile('rawmaker', 'border_pages'),
             utila.ResultFile('headlines', 'result_result'),
-            utila.ResultFile('groupme', 'footer_footerheader'),
+            utila.ResultFile('footnote', 'result_result'),
         ],
         output=('result',),
     ),
