@@ -9,6 +9,7 @@
 
 import iamraw
 import power
+import pytest
 import serializeraw
 import utilatest
 
@@ -152,6 +153,7 @@ def test_dotted_with_content_only():
     assert parsed == ['Index Page', 'Support', 'Changelog']
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.longrun
 @utilatest.requires(power.MASTER072_PDF)
 def test_master72page39_one_list():

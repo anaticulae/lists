@@ -57,6 +57,7 @@ def test_master72page9_10(td, mp):
     assert len(utila.select_page(extracted, 9).content[0].data) == 7
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.longrun
 def test_master72page39_40_41(td, mp):
     pages = (39, 40, 41, 42)
@@ -87,6 +88,7 @@ def test_master155page23(td, mp):
     assert singlelist[1][1].endswith('Experimentvorgaben.')
 
 
+@pytest.mark.xfail(reason='software integration')
 @pytest.mark.parametrize('pages', [
     pytest.param((36, 37, 38, 39, 40, 41, 42), id='with_offset'),
     pytest.param(utila.rtuple(42), id='no_offset'),
