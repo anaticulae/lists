@@ -19,52 +19,50 @@ import lists
 import tests
 
 
-def extract_lists(source, pages: tuple, testdir, monkeypatch):
+def extract_lists(source, pages: tuple, td, mp):
     utilatest.fixture_requires(source)
     source = power.link(source)
     pages = utila.from_tuple(pages, separator=',')
     # run words
     tests.run(
         f'-i {source} --pages {pages}',
-        monkeypatch=monkeypatch,
+        mp=mp,
     )
-    parsed = serializeraw.load_lists(testdir.tmpdir)
+    parsed = serializeraw.load_lists(td.tmpdir)
     return parsed
 
 
 @utilatest.longrun
-def test_bachelor76page4(testdir, monkeypatch):
+def test_bachelor76page4(td, mp):
     pages = (4,)
-    extracted = extract_lists(power.BACHELOR076_PDF, pages, testdir,
-                              monkeypatch)
+    extracted = extract_lists(power.BACHELOR076_PDF, pages, td, mp)
     # 1 pages with list content
     assert len(extracted) == 1
 
 
 @utilatest.longrun
-def test_bachelor76page5_10(testdir, monkeypatch):
+def test_bachelor76page5_10(td, mp):
     pages = (5, 6, 7, 8, 9, 10)
-    extracted = extract_lists(power.BACHELOR076_PDF, pages, testdir,
-                              monkeypatch)
+    extracted = extract_lists(power.BACHELOR076_PDF, pages, td, mp)
     # 1 pages with list content
     assert len(extracted) == 1
 
 
 @utilatest.longrun
-def test_master72page9_10(testdir, monkeypatch):
+def test_master72page9_10(td, mp):
     pages = (9, 10)
     source = power.MASTER072_PDF
-    extracted = extract_lists(source, pages, testdir, monkeypatch=monkeypatch)
+    extracted = extract_lists(source, pages, td, mp=mp)
     assert len(extracted) == 1
     assert len(utila.select_page(extracted, 9).content[0].data) == 7
 
 
 @utilatest.longrun
-def test_master72page39_40_41(testdir, monkeypatch):
+def test_master72page39_40_41(td, mp):
     pages = (39, 40, 41, 42)
     source = power.MASTER072_PDF
     # extract
-    extracted = extract_lists(source, pages, testdir, monkeypatch=monkeypatch)
+    extracted = extract_lists(source, pages, td, mp=mp)
     # validate
     assert len(extracted) == 1
     page39 = utila.select_page(extracted, page=39).content
@@ -74,11 +72,11 @@ def test_master72page39_40_41(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_master155page23(testdir, monkeypatch):
+def test_master155page23(td, mp):
     pages = (23,)
     source = power.MASTER155_PDF
     # extract
-    extracted = extract_lists(source, pages, testdir, monkeypatch=monkeypatch)
+    extracted = extract_lists(source, pages, td, mp=mp)
     # validate
     assert len(extracted) == 1
     page23 = utila.select_page(extracted, page=23).content
@@ -95,11 +93,11 @@ def test_master155page23(testdir, monkeypatch):
     pytest.param(':', id='all'),
 ])
 @utilatest.nightly
-def test_bachelor128page36_42(pages, testdir, monkeypatch):
+def test_bachelor128page36_42(pages, td, mp):
     """Use pages to ensure that extracting works when extraction uses
     more than one chunk."""
     source = power.BACHELOR128_PDF
-    extracted = extract_lists(source, pages, testdir, monkeypatch=monkeypatch)
+    extracted = extract_lists(source, pages, td, mp=mp)
     # validate
     selected = utila.select_content(extracted, page=37)
     assert len(selected) == 1
@@ -132,24 +130,24 @@ param = pytest.param
     param(power.MASTER155_PDF, ':', 'master155', id='master155'),
 ])
 @utilatest.nightly
-def test_validate(source, pages, expected, testdir, monkeypatch):
+def test_validate(source, pages, expected, td, mp):
     utilatest.fixture_requires(source)
     Evaluate(
         source=source,
         pages=pages,
         expected=expected,
-        workdir=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        workdir=td.tmpdir,
+        mp=mp,
     ).evaluate()
 
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, source, pages, expected, workdir, monkeypatch):
+    def __init__(self, source, pages, expected, workdir, mp):
         super().__init__(
             program=functools.partial(
                 tests.run,
-                monkeypatch=monkeypatch,
+                mp=mp,
             ),
             step='',
             pages=pages,

@@ -17,45 +17,45 @@ import tests
 
 
 @utilatest.requires(power.BACHELOR241_PDF)
-def test_nolist_bachelor241page81(testdir, monkeypatch):
+def test_nolist_bachelor241page81(td, mp):
     """This test was designed cause on this page table content was
     parsed as lists."""
     source = power.link(power.BACHELOR241_PDF)
-    tests.run(f'-i {source} --pages=81', monkeypatch=monkeypatch)
+    tests.run(f'-i {source} --pages=81', mp=mp)
 
-    loaded = serializeraw.load_lists(testdir.tmpdir)
+    loaded = serializeraw.load_lists(td.tmpdir)
     assert not loaded
 
 
 @utilatest.requires(power.DOCU027_PDF)
-def test_docu027p4(testdir, monkeypatch):
+def test_docu027p4(td, mp):
     """This test was designed cause table content was parsed as lists."""
     source = power.link(power.DOCU027_PDF)
-    tests.run(f'-i {source} --pages=4', monkeypatch=monkeypatch)
-    loaded = serializeraw.load_lists(testdir.tmpdir)
+    tests.run(f'-i {source} --pages=4', mp=mp)
+    loaded = serializeraw.load_lists(td.tmpdir)
     assert len(loaded) == 1
     area = utila.select_content(loaded, page=4)[0].area
     assert area == [6, 7, 8]
 
 
 @utilatest.requires(power.MASTER110_PDF)
-def test_reg_list_master110p89(testdir, monkeypatch):
+def test_reg_list_master110p89(td, mp):
     """This test was designed cause table content was parsed as lists."""
     source = power.link(power.MASTER110_PDF)
-    tests.run(f'-i {source} --pages=89', monkeypatch=monkeypatch)
-    loaded = serializeraw.load_lists(testdir.tmpdir)
+    tests.run(f'-i {source} --pages=89', mp=mp)
+    loaded = serializeraw.load_lists(td.tmpdir)
     assert not loaded
 
 
 @pytest.mark.xfail(reason='improve list parser')
 @utilatest.requires(power.BACHELOR067_PDF)
-def test_reg_list_bachelor67page10(testdir, monkeypatch):
+def test_reg_list_bachelor67page10(td, mp):
     source = power.link(power.BACHELOR067_PDF)
     tests.run(
         f'-i {source} --pages=10',
-        monkeypatch=monkeypatch,
+        mp=mp,
     )
-    loaded = serializeraw.load_lists(testdir.tmpdir, pages=(10,))[0].content
+    loaded = serializeraw.load_lists(td.tmpdir, pages=(10,))[0].content
     assert len(loaded) == 3  # VALIDATED
     assert loaded[0].area_length == [1, 2]
     assert loaded[1].area_length == [3, 2]

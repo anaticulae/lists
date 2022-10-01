@@ -154,7 +154,7 @@ def test_dotted_with_content_only():
 
 @utilatest.longrun
 @utilatest.requires(power.MASTER072_PDF)
-def test_master72page39_one_list(testdir):
+def test_master72page39_one_list():
     pages = (39,)
     source = power.link(power.MASTER072_PDF)
     ptcn = serializeraw.ptcn_frompath(
@@ -265,15 +265,15 @@ def test_merge_overlapping_lists_two_pages():
 
 
 @utilatest.requires(power.MASTER110_PDF)
-def test_area_tuple_master110pages67(testdir, monkeypatch):
+def test_area_tuple_master110pages67(td, mp):
     """Ensure that area-attribute is splitted by list content.
 
     Example: 0l_0, 0l_0; 0l_1; 0l_2
     """
     source = power.link(power.MASTER110_PDF)
-    cmd = f'--page=67 -i {source} -o {testdir.tmpdir}'
-    tests.run(cmd, monkeypatch=monkeypatch)
-    parsed = serializeraw.load_lists(testdir.tmpdir, pages=67)[0].content[0]
+    cmd = f'--page=67 -i {source} -o {td.tmpdir}'
+    tests.run(cmd, mp=mp)
+    parsed = serializeraw.load_lists(td.tmpdir, pages=67)[0].content[0]
     expected = [2, 1, 2, 1, 1, 2]
     area_length = parsed.area_length
     assert area_length == expected
