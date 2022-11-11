@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v0.3.1 (2022-11-11)
+
+### Chore
+
+* convert nightly to all (74dd653c8447)
+* upgrade environment (2de11a461538)
+* upgrade requirements.txt (52837d772ac6)
+* upgrade pipe library (4d0702f8295c)
+
 ## v0.3.0 (2022-10-01)
 
 ### Feature
