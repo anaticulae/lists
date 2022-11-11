@@ -1,6 +1,6 @@
 ################### 8 ###################
-None Daten, die in hoher Frequenz entstehen und schnell verarbeitet werden sollen, erfordern häufiges Neustarten von Map-Reduce-Jobs. Die Folge ist kostspieliger Overhead durch die Verwaltung der Jobs und gegebenenfalls wiederholtes Einlesen von Daten. 1 Einführung
-None Algorithmen die während ihrer Ausführung iterativ Zwischenergebnisse erzeugen und auf vorherige Zwischenergebnisse angewiesen sind (häufig bei Maschinenlernalgorith- men), können nur durch persistentes Speichern der Daten und wiederholtes Einlesen zwischen allen Iterationsschritten implementiert werden.
+None Daten, die in hoher Frequenz entstehen und schnell verarbeitet werden sollen, erfordern häufiges Neustarten von Map-Reduce-Jobs. Die Folge ist kostspieliger Overhead durch die Verwaltung der Jobs und gegebenenfalls wiederholtes Einlesen von Daten.
+None Algorithmen die während ihrer Ausführung iterativ Zwischenergebnisse erzeugen und
 None Anfragen an ein solches Map-Reduce-System erfolgen imperativ in Form von kleinen Programmen. Dieses Verfahren ist nicht so intuitiv und leicht erlernbar wie deklarative Abfragesprachen klassischer Datenbanken (z.B. SQL).
 ################### 10 ###################
 None den Entwurf und die Implementation einer hybriden Anwendung mit einer Echtzeit- Komponente (Spark Streaming Library) und einer Batch-Komponente (Spark Machine Learning Library).
@@ -9,13 +9,9 @@ None den Betrieb dieser Anwendung auf einem Cluster mit Hardware am unteren Ende
 1. einen einheitlichen Stil und Vergleichbarkeit zwischen Quellcode-Auszügen und eigenen Beispielen zu gewährleisten.
 2. Ausdrücke in kurzer, prägnanter Form darzustellen.
 ---------------------------------------------
-################### 12 ###################
-1. Clientknoten Auf Nutzerseite greift die Anwendung (Treiberprogramm) auf die API eines lokalen Spark-Kontextes zu, der die Kontaktdaten eines Clustermanagers sowie verschiedene Konfigurationseinstellungen enthält.
-2. Masterknoten Der Masterknoten betreibt den Clustermanager und ist der Einstiegspunkt in den Rech- nercluster. Hier werden Ressourcenanforderungen des Treiberprogramms an die Ar- beitsknoten verteilt und der Betrieb der Worker überwacht.
-3. Workerknoten Die Workerknoten beherbergen die Spark Workerprozesse. Diese melden verfügbare Ressourcen und erzeugen bei Bedarf Executors. Executors sind die ausführenden Elemente der Aktionen und Transformationen im Rahmen einer Sparkanwendung. Die Executors können untereinander Zwischenergebnisse austauschen und Nachrichten und Ergebnisse an das Treiberprogramm senden.
 ################### 15 ###################
-None filter Erstellen eines neuen RDD, das nur die Elemente enthält die einen übergebenen bool- schen Ausdruck erfüllen 2 Vorstellung und Architekturübersicht von Spark
-None join Zusammenfassen von zwei RDDs zu einem neuen. Die Partitionen bleiben dabei erhalten
+None filter Erstellen eines neuen RDD, das nur die Elemente enthält die einen übergebenen bool- schen Ausdruck erfüllen
+None join
 ################### 16 ###################
 None reduce Paarweises Zusammenführen der Elemente eines RDD und Rückgabe eines Elementes mit dem Typ der verknüpften Elemente ( dabei muss ein zweiwertiger, assoziativer und kommutativer Operator übergeben werden, der je zwei Elemente verknüpft und auf ein drittes abbildet)
 None count Zählen der Elemente eines RDD
@@ -25,7 +21,7 @@ None foreach Ausführung einer beliebigen Prozedur pro Element eines RDD (der Ty
 1. Übermittlung des Treibers an einen Wrapper für den Spark-Class-Loader als kompilier- tes Package (z.B. als jarfile) mit statischer Verlinkung aller erforderlichen Bibliotheken (Ausnahmen sind Bibliotheken die auf allen Knoten bereits verfügbar sind, z.B. Spark, Hadoop, etc.). Klassenpfade zu Standardbibliotheken von Spark und weitere Konfigu- rationseinstellungen wie z.B. die Angabe des Clustermanagers können zur Startzeit des Treibers durch das Submission-Skript festgelegt werden.
 2. Start eines eigenständig lauffähigen Treibers mit vollständig konfigurierter und verlinkter Spark-Umgebung und expliziter Angabe eines Clustermanagers.
 ---------------------------------------------
-1. Client-Modus Der Treiber wird direkt auf dem Host (Gateway-Rechner) ausgeführt, auf dem der Treiber übermittelt wurde (Abb. 2.7). Tatsächlich wird er sogar innerhalb des Submission-Skript-Prozesses gestartet. 2 Vorstellung und Architekturübersicht von Spark
+1. Client-Modus Der Treiber wird direkt auf dem Host (Gateway-Rechner) ausgeführt, auf dem der Treiber übermittelt wurde (Abb. 2.7). Tatsächlich wird er sogar innerhalb des Submission-Skript-Prozesses gestartet.
 2. Cluster-Modus Der Treiber wird von dem Gateway-Rechner an einen Worker des Clusters übertragen und dort ausgeführt (Abb. 2.8).
 ---------------------------------------------
 ################### 23 ###################
@@ -38,7 +34,7 @@ None foreach Ausführung einer beliebigen Prozedur pro Element eines RDD (der Ty
 ---------------------------------------------
 None Die Partitionierung der Elemente über verschiedene Rechner
 None Die Vorgänger eines RDDs bezüglich dessen Lineage
-None Die Funktion, mit der ein RDD aus einem oder mehreren direkten Vorgängern berechnet wird 2 Vorstellung und Architekturübersicht von Spark
+None Die Funktion, mit der ein RDD aus einem oder mehreren direkten Vorgängern berechnet wird
 ---------------------------------------------
 ################### 24 ###################
 None Solche, deren einzelne Partitionen höchstens eine Vorgängerpartition haben
@@ -47,7 +43,7 @@ None Solche, bei denen mindestens eine Partition mehr als eine Vorgängerpartiti
 1. Catalyst: Eine Optimierungsengine für relationale Ausdrücke
 2. Core: Die Benutzer-API und Ausführungsumgebung für optimierte Catalyst-Ausdrücke auf dem Spark-Applikationskern
 3. Hive: Ein Adapter für die Datawarehouse-Software Apache Hive8
-4. Thriftserver: Eine Portierung des Hive-Servers auf Apache Spark 2 Vorstellung und Architekturübersicht von Spark
+4. Thriftserver: Eine Portierung des Hive-Servers auf Apache Spark
 ################### 29 ###################
 None Transformer sind zustandslose Objekte, die mit einer transform-Methode DataFra- mes verändern.
 None Estimator erzeugen Transformer aus einem Eingangsdatensatz (DataFrame). Sie sind ebenfalls zustandslos und können als Abstraktion eines Lernalgorithmus verstanden werden.
@@ -73,7 +69,8 @@ None Das Archiv aller Email-Bodies ist der Textkorpus
 5. Scores aller Wörter eines Tweets summieren (Reduce)
 6. Normalisieren des Scores per Division durch die Anzahl aller Wörter des Tweets
 7. Zzurückgeben des Tupels (Score, Status)
-################### 46 ###################
+################### 45 ###################
+2. der Replikationsfaktor der Blöcke auf HDFS (1, 2, 3, 4)
 1. Größe des Textkorpus: 1,5 GB
 2. Fenstergröße des TF-IDF Vektors: 500 Nachrichten
 3. Erlaubte Cores Pro Executor: 4
@@ -86,6 +83,8 @@ None Das Archiv aller Email-Bodies ist der Textkorpus
 1. Message Queues: Für die robuste Verbindung zur asynchronen Kommunikation zwi- schen Batch- und Realtime-Komponente käme eine Erweiterung mit Messagequeues oder auch (NoSQL-)Datenbanken in Frage.
 2. Umfangreichere Datenquellen: Um die Skalierbarkeit der Streaming-Komponente unabhängig vom dem hier behandelten Anwendungsfall zu betrachten, könnte man einen eigenen speziellen Receiver implementieren und diesen mit einer kontrollierbaren Datenquelle verbinden. Kontrollierbar heißt hier, dass die erzeugte Last flexibel erhöht werden kann, um die Kapazität des empfangenden Knotens zu übertreffen und eine verteilte Verarbeitung zu erzwingen.
 3. Clustermanagement: Die Konfiguration der Knoten und der verteilten Komponenten wurde für diesen Versuch überwiegend manuell durchgeführt. Um auch eine höhere Anzahl von Knoten verwalten zu können wären Werkzeuge zur Automatisierung von Konfiguration (z.B. Chef1, Puppet2) oder Provisionierung (z.B. Docker3, Rocket4, Kuber- netes5) notwendig. Für ein komfortables Monitoring könnte man den Cluster mit Tools zur dauerhaften Überwachung ausstatten (z.B. Nagios/Icinga6, Ganglia7).
-################### 55 ###################
+---------------------------------------------
+1. Textkorpus: Als Textkorpus für das TF-IDF-Verfahren wurde für diesen Proof of Concept der vervielfachte Inhalt von Nachrichten aus der Spark-User-Mailingliste verwendet (etwa 13000 Emails). Eine schärfere Abgrenzung relevanter Begriffe lässt sich wahr- scheinlich durch einen unabhängigen Korpus erreichen (beispielsweise Wikipedia8 oder der klassische Reuters-Nachrichtenkorpus9).
 2. Ähnlichkeitsmaß: Das Scoring könnte darüber hinaus durch leistungsfähigere Verfah- ren verbessert werden - etwa durch Ähnlichkeitsmaße ([Hua08]), die auch Synonyme erkennen.
 3. Grafische Benutzeroberfläche: Damit die gefilterten Nachrichten ihren Weg zum Be- nutzer finden, gibt es eine Vielzahl an Möglichkeiten. Naheliegend wäre ein Webinterface (z.B. über den MEAN-Stack10 oder das Play-Framework11 für Scala/Java).
+---------------------------------------------

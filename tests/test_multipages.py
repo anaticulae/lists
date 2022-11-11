@@ -8,7 +8,6 @@
 # =============================================================================
 
 import power
-import pytest
 import serializeraw
 import texmex
 import utila
@@ -17,7 +16,6 @@ import utilatest
 import lists.strategies.multiplepages
 
 
-@pytest.mark.xfail(reason='software integration')
 @utilatest.longrun
 @utilatest.requires(power.MASTER072_PDF)
 def test_merge_pages():
@@ -33,7 +31,6 @@ def test_merge_pages():
     assert merged[-1].bounding[3] >= 3000
 
 
-@pytest.mark.xfail(reason='software integration')
 @utilatest.longrun
 def test_extract_lists():
     source = power.link(power.MASTER072_PDF)
