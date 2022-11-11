@@ -33,7 +33,7 @@ def test_merge_pages():
 
 @utilatest.longrun
 def test_extract_lists():
-    source = power.link(power.MASTER072_PDF)
+    source = power.MASTER072_PDF
     pages = utila.rtuple(35, 50)
     parsed = extract_multiple_lists(source, pages)
     # TODO: REPLACE AFTER CHANGING DATA STRUCTURE
@@ -44,7 +44,7 @@ def test_extract_lists():
 
 @utilatest.nightly
 def test_extract_multiple_lists_master72():
-    source = power.link(power.MASTER072_PDF)
+    source = power.MASTER072_PDF
     pages = None
     parsed = extract_multiple_lists(source, pages)
     # TODO: REPLACE AFTER CHANGING DATA STRUCTURE
@@ -61,6 +61,7 @@ def test_extract_multiple_lists_master72():
 
 def extract_multiple_lists(source, pages):
     utilatest.fixture_requires(source)
+    source = power.link(source)
     ptcns = serializeraw.ptcn_frompath(
         path=source,
         pages=pages,
