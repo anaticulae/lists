@@ -11,8 +11,8 @@ import utila
 
 
 def global_score(items) -> int:
-    content = utila.flatten([item.content for item in items])
-    areas = sum([score_area(item.area) for item in content])
+    content = utila.flat([item.content for item in items])
+    areas = sum((score_area(item.area) for item in content))
     return areas
 
 
@@ -24,7 +24,7 @@ def score_area(area):
     4
     """
     try:
-        flat = utila.flatten(area)
+        flat = utila.flat(area)
     except TypeError:
         flat = area
     return len(flat)
@@ -51,7 +51,7 @@ def valid_area(items) -> bool:
     if len(items) == 1:
         return True
     for item in items:
-        unqiue = utila.make_unique(
+        unqiue = utila.unique(
             utila.roundme(
                 utila.diffs(item),
                 digits=0,

@@ -225,9 +225,9 @@ def sync_headlines(navgiator, headlines):
     if not navgiator:
         return
     page = navgiator.page
-    headlines = utila.flatten(headlines)
+    headlines = utila.flat(headlines)
     headlines = [ranges(item) for item in headlines if item.page == page]
-    headlines = set(utila.flatten(headlines))  # pylint:disable=R0204
+    headlines = set(utila.flat(headlines))  # pylint:disable=R0204
     for index, line in enumerate(navgiator):
         if index in headlines:
             yield None

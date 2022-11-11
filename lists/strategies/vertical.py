@@ -176,6 +176,6 @@ def group_indexes(group, parsed, offset: int) -> tuple:
                     maxdiff=DIFF_MAX,
             ) or item in parse:
                 result.append(index + offset)
-    result = utila.make_unique(result)
+    result = utila.unique(result)
     result = utila.longest(utila.groupby_diff(result))
     return tuple(result)

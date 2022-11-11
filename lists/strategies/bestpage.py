@@ -86,7 +86,6 @@ def merge_overlapping_lists(items):
             ((lastpage + pageplus) == currentpage),
             ((lastlength - 1) == lastlist.area[-1]),
         ))
-
         if pagestart and connected:
             # merge lists
             for entree in currentlist:
@@ -95,14 +94,12 @@ def merge_overlapping_lists(items):
             # update length of page navigation where list is located to
             # merge more than two pages.
             result[-1][2] = lastlength
-
             if item[1][1:]:
                 # more than one list per page
                 result[-1][1].extend(item[1][1:])
                 result[-1][2] = item[2]
         else:
             result.append(item)
-
     # remove navigator length entree
     result = [tuple(item[0:2]) for item in result]
     return result
@@ -122,8 +119,8 @@ def pagecontentlist(pages) -> iamraw.PageContentLists:
 
 
 def invalid_list_content(items) -> bool:
-    for _, content in items:
-        if content.count('..') > 5 or content.count('. .') > 5:
-            # exclude table content `1 .Einleitung ............ 5`
-            return True
+    if any((content.count('..') > 5 or content.count('. .') > 5
+            for _, content in items)):
+        # exclude table content `1 .Einleitung ............ 5`
+        return True
     return False

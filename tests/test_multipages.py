@@ -51,13 +51,13 @@ def test_extract_multiple_lists_master72():
     pages = None
     parsed = extract_multiple_lists(source, pages)
     # TODO: REPLACE AFTER CHANGING DATA STRUCTURE
-    # lists = utila.flatten(lists)
+    # lists = utila.flat(lists)
     # lists on 4 starting pages
     # TODO: DECIDE IF VERY LONG LISTS ON P45 ARE TREATED AS LISTS OR
     # SOMETHING ELSE.
     expected = (4, 5)
     assert len(parsed) in expected
-    listinstances = utila.flatten([item.content for item in parsed])
+    listinstances = utila.flat([item.content for item in parsed])
     # number of lists
     assert len(listinstances) in expected
 
