@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v0.3.2 (2022-12-06)
+
+### Chore
+
+* remove lists dependency (1d62fe574269)
+* use quick installer (d04e76089818)
+* upgrade requirements.txt (6b4218c39025)
+* upgrade pipeline (0f7e786f5ed5)
+
 ## v0.3.1 (2022-11-11)
 
 ### Chore
