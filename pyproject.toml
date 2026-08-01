@@ -35,12 +35,12 @@ content-type = "text/markdown"
 
 [project.optional-dependencies]
 dev = [
-    "utilotest==1.0.5",
-    "hoverpower==1.6.0",
-    "rawmaker==2.40.5",
     "gennex>=1.1.0,<2.0.0",
     "groupmes>=1.1.0,<2.0.0",
+    "hoverpower>=1.6.0,<2.0.0",
+    "rawmaker>=2.40.5,<3.0.0",
     "titulum>=1.0.2,<2.0.0",
+    "utilotest>=1.0.5,<2.0.0",
 ]
 
 [project.urls]
