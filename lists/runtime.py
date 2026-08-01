@@ -17,10 +17,10 @@ import lists.utils
 def extract_lists(ptcns, headlines, magic=None) -> iamraw.PageContentLists:  # pylint:disable=W0613
     """Run different strategies to gather the best list extraction result."""
     best, result = 0, []
-    for strategy in [
+    for strategy in (
             lists.strategies.bestpage.run,
             lists.strategies.multiplepages.run,
-    ]:
+    ):
         extracted = strategy(ptcns, headlines)
         score = lists.utils.global_score(extracted)
         if score > best:
