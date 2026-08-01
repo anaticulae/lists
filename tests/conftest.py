@@ -45,7 +45,6 @@ def pytest_sessionstart():
 
 
 def extract(resources):
-    utilo.log(f'root: {hoverpower.REPOSITORY}')
     gennex.extract(
         files=resources,
         caption=True,

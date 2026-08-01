@@ -18,7 +18,7 @@ def parse_single(content: str) -> list:
     >>> parse_single('+ list item\n+ next item\n+\n')
     ['list item', 'next item', '']
     """
-    for method in [
+    for method in (
             parse_numbered_list,
             parse_quardo_list,
             parse_dotted_list,
@@ -26,7 +26,7 @@ def parse_single(content: str) -> list:
             parse_minus_list,
             parse_roman_list,
             parse_colon_list,
-    ]:
+    ):
         extracted = method(content)
         if not extracted:
             continue
