@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-import utila
+import utilo
 
 import lists
 
@@ -23,21 +23,21 @@ Supported:
 """
 
 WORKPLAN = [
-    utila.create_step(
+    utilo.create_step(
         'result',
         inputs=[
-            utila.ResultFile('rawmaker', 'oneline_text_text'),
-            utila.ResultFile('rawmaker', 'oneline_text_positions'),
-            utila.ResultFile('rawmaker', 'border_pages'),
-            utila.ResultFile('headlines', 'result_result'),
-            utila.ResultFile('footnote', 'result_result'),
+            utilo.ResultFile('rawmaker', 'oneline_text_text'),
+            utilo.ResultFile('rawmaker', 'oneline_text_positions'),
+            utilo.ResultFile('rawmaker', 'border_pages'),
+            utilo.ResultFile('headlines', 'result_result'),
+            utilo.ResultFile('footnote', 'result_result'),
         ],
         output=('result',),
     ),
-    utila.create_step(
+    utilo.create_step(
         'legacy',
         inputs=[
-            utila.ResultFile('lists', 'result_result'),
+            utilo.ResultFile('lists', 'result_result'),
         ],
         output=('legacy',),
     ),
@@ -45,11 +45,11 @@ WORKPLAN = [
 
 
 def main():
-    utila.featurepack(
+    utilo.featurepack(
         root=lists.ROOT,
         workplan=WORKPLAN,
         featurepackage='lists.features',
-        config=utila.FeaturePackConfig(
+        config=utilo.FeaturePackConfig(
             rename=rename,
             description=DESCRIPTION,
             name=lists.PROCESS,
@@ -64,7 +64,7 @@ def rename(path):
     if not isinstance(path, str):
         path = [rename(item) for item in path]
         return path
-    path = utila.rreplace(
+    path = utilo.rreplace(
         path,
         pattern='lists__legacy_legacy',
         replace='words__list_list',

@@ -9,7 +9,7 @@
 
 import re
 
-import utila
+import utilo
 
 
 def parse_single(content: str) -> list:
@@ -40,25 +40,25 @@ PLUS = '+'
 MINUS = '-'
 # 61623: dot
 DOTTED = {'•', '\x88', '\x99', chr(61623)}
-NUMBER = utila.compiles(r'^[0-9]{1,2}\.(?!\d)')
-ROMAN = utila.compiles(r'^(I|II|III|IIII|IV|V|VI|VII|VIII|VIIII|IX|X)\.')
+NUMBER = utilo.compiles(r'^[0-9]{1,2}\.(?!\d)')
+ROMAN = utilo.compiles(r'^(I|II|III|IIII|IV|V|VI|VII|VIII|VIIII|IX|X)\.')
 # (a) (b) (c)
-COLON = utila.compiles(r'^\([abcdefghij]\)')
+COLON = utilo.compiles(r'^\([abcdefghij]\)')
 
 
-def parse_quardo_list(content: str) -> utila.Strings:
+def parse_quardo_list(content: str) -> utilo.Strings:
     return parse_general_list(content, QUARDO)
 
 
-def parse_dotted_list(content: str) -> utila.Strings:
+def parse_dotted_list(content: str) -> utilo.Strings:
     return parse_general_list(content, DOTTED)
 
 
-def parse_plus_list(content: str) -> utila.Strings:
+def parse_plus_list(content: str) -> utilo.Strings:
     return parse_general_list(content, PLUS)
 
 
-def parse_minus_list(content: str) -> utila.Strings:
+def parse_minus_list(content: str) -> utilo.Strings:
     r"""\
     >>> parse_minus_list(('- Bezugsbetreuung im Wohn- und Lebensumfeld\n'
     ... '- bei Wohnungslosigkeit Möglichkeit Trägerbestand\n\n'))
@@ -93,7 +93,7 @@ def parse_general_list(
     content: str,
     selector: str,
     selector_skip: bool = True,
-) -> utila.Strings:
+) -> utilo.Strings:
     r"""\
     >>> parse_general_list('\x88 Humus\n\x88 Bread', ['•', '\x88'])
     ['Humus', 'Bread']
@@ -101,7 +101,7 @@ def parse_general_list(
     []
     """
     if not isinstance(selector, re.Pattern):
-        selector = utila.compiles(f'^{regex_prepare(selector)}')
+        selector = utilo.compiles(f'^{regex_prepare(selector)}')
     assert isinstance(content, str), type(content)
     data = [item.strip() for item in content.splitlines()]
     starts = [index for index, item in enumerate(data) if selector.match(item)]
@@ -109,7 +109,7 @@ def parse_general_list(
         # could not detect any list
         return []
     result = [
-        utila.NEWLINE.join(data[current:after])
+        utilo.NEWLINE.join(data[current:after])
         for current, after in zip(starts[:-1], starts[1:])
     ]
     # find first empty item to merge last item
@@ -126,7 +126,7 @@ def parse_general_list(
     else:
         # last item is a content item
         end = starts[-1]
-    result.append(utila.NEWLINE.join(data[starts[-1]:end + 1]))
+    result.append(utilo.NEWLINE.join(data[starts[-1]:end + 1]))
     # strip selector
     if selector_skip:
         result = [selector.sub('', item).strip() for item in result]
@@ -137,10 +137,10 @@ def parse_general_list(
 
 
 def regex_prepare(items):
-    # TODO: MOVE TO UTILA
+    # TODO: MOVE TO utilo
     if isinstance(items, str):
         items = re.escape(items)
-    if utila.iterable(items):
+    if utilo.iterable(items):
         items = [re.escape(item) for item in items]
         items = f"({'|'.join(items)})"
     return items

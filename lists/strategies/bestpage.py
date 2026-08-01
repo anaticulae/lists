@@ -9,7 +9,7 @@
 
 import iamraw
 import texmex
-import utila
+import utilo
 
 import lists.strategies.geometry
 import lists.strategies.vertical
@@ -54,7 +54,7 @@ def extract_best_page(navigator, headlines, textfeed, textdistance):
         item for item in vertical if lists.utils.valid_area(item.area) and
         not invalid_list_content(item.data)
     ]
-    selected = utila.zip_optimizer(  # pylint:disable=E1101
+    selected = utilo.zip_optimizer(  # pylint:disable=E1101
         geo,
         vertical,
         selector=lambda x: x.area,
@@ -63,7 +63,7 @@ def extract_best_page(navigator, headlines, textfeed, textdistance):
     # single: iamraw.PageList
     for single in selected:
         count_newline = [
-            content.count(utila.NEWLINE) + 1 for _, content in single
+            content.count(utilo.NEWLINE) + 1 for _, content in single
         ]
         single.area_length = count_newline
         # TODO: REPLACE 0,0 with correct one
@@ -81,7 +81,7 @@ def merge_overlapping_lists(items):
         pageplus = lists.utils.pagerange(lastlist.area)
 
         currentpage, currentlist = item[0], item[1][0][2]
-        pagestart = utila.iszero(currentlist.area[0])
+        pagestart = utilo.iszero(currentlist.area[0])
         connected = all((
             ((lastpage + pageplus) == currentpage),
             ((lastlength - 1) == lastlist.area[-1]),
@@ -112,7 +112,7 @@ def pagecontentlist(pages) -> iamraw.PageContentLists:
         for paragraph, merged_, listinstance in content:
             listinstance.paragraph = paragraph
             listinstance.merged = merged_
-            listinstance.area = utila.groupby_ascending(listinstance.area)
+            listinstance.area = utilo.groupby_ascending(listinstance.area)
             collected.append(listinstance)
         result.append(iamraw.PageContentList(page=page, content=collected))
     return result

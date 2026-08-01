@@ -7,21 +7,21 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import serializeraw
 import texmex
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import lists.strategies.multiplepages
 
 
-@utilatest.longrun
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.longrun
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_merge_pages():
     # TODO: WHAT SHOULD WE CHECK?
-    source = power.link(power.MASTER072_PDF)
-    pages = utila.rtuple(35, 40)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
+    pages = utilo.rtuple(35, 40)
     ptcns = serializeraw.ptcn_frompath(
         path=source,
         pages=pages,
@@ -31,37 +31,37 @@ def test_merge_pages():
     assert merged[-1].bounding[3] >= 3000
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_extract_lists():
-    source = power.MASTER072_PDF
-    pages = utila.rtuple(35, 50)
+    source = hoverpower.MASTER072_PDF
+    pages = utilo.rtuple(35, 50)
     parsed = extract_multiple_lists(source, pages)
     # TODO: REPLACE AFTER CHANGING DATA STRUCTURE
-    page39 = utila.select_page(parsed, 39)
+    page39 = utilo.select_page(parsed, 39)
     assert len(page39.content) == 1
     assert len(page39.content[0]) == 4
 
 
-@utilatest.nightly
+@utilotest.nightly
 def test_extract_multiple_lists_master72():
-    source = power.MASTER072_PDF
+    source = hoverpower.MASTER072_PDF
     pages = None
     parsed = extract_multiple_lists(source, pages)
     # TODO: REPLACE AFTER CHANGING DATA STRUCTURE
-    # lists = utila.flat(lists)
+    # lists = utilo.flat(lists)
     # lists on 4 starting pages
     # TODO: DECIDE IF VERY LONG LISTS ON P45 ARE TREATED AS LISTS OR
     # SOMETHING ELSE.
     expected = (4, 5)
     assert len(parsed) in expected
-    listinstances = utila.flat([item.content for item in parsed])
+    listinstances = utilo.flat([item.content for item in parsed])
     # number of lists
     assert len(listinstances) in expected
 
 
 def extract_multiple_lists(source, pages):
-    utilatest.fixture_requires(source)
-    source = power.link(source)
+    utilotest.fixture_requires(source)
+    source = hoverpower.link(source)
     ptcns = serializeraw.ptcn_frompath(
         path=source,
         pages=pages,

@@ -17,12 +17,12 @@
 """
 
 import serializeraw
-import utila
+import utilo
 
 import lists.runtime
 
 
-@utila.checkdatatype
+@utilo.checkdatatype
 def work(
     textx: str,
     textpositions: str,

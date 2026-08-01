@@ -37,7 +37,7 @@ import collections
 
 import iamraw
 import texmex
-import utila
+import utilo
 
 import lists.strategies.bestpage
 
@@ -74,7 +74,7 @@ def adjust_pagenumbers(
         starting_page = from_area[first_area].pdf_page
         # convert to local content navigator area
         area = [from_area[relativ].page_line for relativ in list_single.area]
-        splitted = utila.groupby_ascending(area)
+        splitted = utilo.groupby_ascending(area)
         list_single.area = splitted
         matched[starting_page].append(list_single)
     pages = [

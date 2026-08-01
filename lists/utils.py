@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 
 def global_score(items) -> int:
-    content = utila.flat([item.content for item in items])
+    content = utilo.flat([item.content for item in items])
     areas = sum((score_area(item.area) for item in content))
     return areas
 
@@ -24,7 +24,7 @@ def score_area(area):
     4
     """
     try:
-        flat = utila.flat(area)
+        flat = utilo.flat(area)
     except TypeError:
         flat = area
     return len(flat)
@@ -35,7 +35,7 @@ def pagerange(items) -> int:
     >>> pagerange([1, 2, 3, 0, 1, 2, 3, 4, 0, 1])
     3
     """
-    grouped = utila.groupby_ascending(items)
+    grouped = utilo.groupby_ascending(items)
     return len(grouped)
 
 
@@ -51,9 +51,9 @@ def valid_area(items) -> bool:
     if len(items) == 1:
         return True
     for item in items:
-        unqiue = utila.unique(
-            utila.roundme(
-                utila.diffs(item),
+        unqiue = utilo.unique(
+            utilo.roundme(
+                utilo.diffs(item),
                 digits=0,
                 convert=False,
             ))

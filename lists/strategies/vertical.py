@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
 import texmex
-import utila
+import utilo
 
 import lists.regex
 import lists.strategies.geometry
@@ -53,7 +53,7 @@ def group_and_parse(
     collected = []
     for group in grouped:
         rawgroup = [ptcn[item].text for item in group]
-        content = utila.NEWLINE.join(rawgroup)
+        content = utilo.NEWLINE.join(rawgroup)
         if not content.strip():
             collected.append(None)
             continue
@@ -66,14 +66,14 @@ def group_and_parse(
             collected.append((parsed, indexes))
         else:
             collected.append(None)
-    grouped = utila.groupby_none(collected)
+    grouped = utilo.groupby_none(collected)
     return grouped
 
 
 # skip list if more empty items are parsed
-EMPTY_ITEM_RATE_MAX = configo.HV_PERCENT_PLUS(default=20)
+EMPTY_ITEM_RATE_MAX = configos.HV_PERCENT_PLUS(default=20)
 # disable empty rate check for fewer empty items
-EMPTY_ITEM_LENGTH_MIN = configo.HV_INT_PLUS(default=5)
+EMPTY_ITEM_LENGTH_MIN = configos.HV_INT_PLUS(default=5)
 
 
 def create_lists(items) -> list:
@@ -124,14 +124,14 @@ def empty_list_rate(
         return 0.0
     if empty < EMPTY_ITEM_LENGTH_MIN:
         return 0.0
-    rate = utila.rate_rel(
+    rate = utilo.rate_rel(
         empty,
         len(parsed),
     )
     return rate
 
 
-LAST_ONE_DISTANCE_MAX = configo.HV_PERCENT_PLUS(default=10)
+LAST_ONE_DISTANCE_MAX = configos.HV_PERCENT_PLUS(default=10)
 
 
 def fix_lastone(items):
@@ -151,7 +151,7 @@ def fix_lastone(items):
             break
         connected.append(item)
     # update last one
-    updated = utila.NEWLINE.join(connected)
+    updated = utilo.NEWLINE.join(connected)
     if isinstance(items[-1], tuple):
         items[-1] = (updated, items[-1][1])
     else:
@@ -159,7 +159,7 @@ def fix_lastone(items):
     return items
 
 
-DIFF_MAX = configo.HV_FLOAT_PLUS(default=0.6)
+DIFF_MAX = configos.HV_FLOAT_PLUS(default=0.6)
 
 
 def group_indexes(group, parsed, offset: int) -> tuple:
@@ -170,12 +170,12 @@ def group_indexes(group, parsed, offset: int) -> tuple:
     for index, item in enumerate(group):
         for parse in parsed:
             parse = parse if isinstance(parse, str) else parse[0]  # HACK:
-            if utila.similar(
+            if utilo.similar(
                     item,
                     parse,
                     maxdiff=DIFF_MAX,
             ) or item in parse:
                 result.append(index + offset)
-    result = utila.unique(result)
-    result = utila.longest(utila.groupby_diff(result))
+    result = utilo.unique(result)
+    result = utilo.longest(utilo.groupby_diff(result))
     return tuple(result)

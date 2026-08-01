@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import iamraw
-import power
 import serializeraw
-import utilatest
+import utilotest
 
 import lists.regex
 import lists.runtime
@@ -152,11 +152,11 @@ def test_dotted_with_content_only():
     assert parsed == ['Index Page', 'Support', 'Changelog']
 
 
-@utilatest.longrun
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.longrun
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_master72page39_one_list():
     pages = (39,)
-    source = power.link(power.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     ptcn = serializeraw.ptcn_frompath(
         source,
         pages=pages,
@@ -264,13 +264,13 @@ def test_merge_overlapping_lists_two_pages():
     assert not any(marker), str(marker)
 
 
-@utilatest.requires(power.MASTER110_PDF)
+@utilotest.requires(hoverpower.MASTER110_PDF)
 def test_area_tuple_master110pages67(td, mp):
     """Ensure that area-attribute is splitted by list content.
 
     Example: 0l_0, 0l_0; 0l_1; 0l_2
     """
-    source = power.link(power.MASTER110_PDF)
+    source = hoverpower.link(hoverpower.MASTER110_PDF)
     cmd = f'--page=67 -i {source} -o {td.tmpdir}'
     tests.run(cmd, mp=mp)
     parsed = serializeraw.load_lists(td.tmpdir, pages=67)[0].content[0]
