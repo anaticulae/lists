@@ -50,7 +50,7 @@ def extract(resources):
         cleanup=True,
         codero=True,
         figureo=True,
-        formulero=True,
+        # formulero=True,
         groupme=True,
         footnote=True,
         headnote=True,
