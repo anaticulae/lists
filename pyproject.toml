@@ -54,8 +54,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/anaticulae/smarty"
-Repository = "https://github.com/anaticulae/smarty"
+Homepage = "https://github.com/anaticulae/lists"
+Repository = "https://github.com/anaticulae/lists"
 
 [project.scripts]
 lists = "lists.cli:main"
