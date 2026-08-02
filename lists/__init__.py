@@ -13,4 +13,4 @@ import os
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 PROCESS = 'lists'
 
-__version__ = importlib.metadata.version(PROCESS)
+__version__ = importlib.metadata.version('indicibus')
