@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.1 (2026-08-02)
+
+### Bug Fixes
+
+- **project**: Adjust project name
+  ([`416e188`](https://github.com/anaticulae/lists/commit/416e1884dbebc64f048f79d09ee101efba89433d))
+
+
 ## v1.0.0 (2026-08-02)
 
 ### Chores
