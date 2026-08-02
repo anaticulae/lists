@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.2 (2026-08-02)
+
+### Chores
+
+- **pyproject**: Adjust project url
+  ([`8f3285c`](https://github.com/anaticulae/lists/commit/8f3285c824bb6ffcb4e90a29038d1823b63f4040))
+
+
 ## v1.0.1 (2026-08-02)
 
 ### Bug Fixes
